@@ -23,6 +23,7 @@ const InventorySchema = new Schema<Inventory>({
   },
 });
 
+// create schema for product
 const productSchema = new Schema<Product>({
   name: {
     type: String,
@@ -56,4 +57,5 @@ const productSchema = new Schema<Product>({
   },
 });
 
+// create model for product
 export const ProductModel = model<Product>("Product", productSchema);
