@@ -17,24 +17,24 @@ Follow the steps given below to run the project in your local machine
 
 ## Installation
 
-### 1. **Clone the repository:**
+#### 1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/ShamimaNasrin/advance-crud-mongoose-express-ts.git
 ```
 
-### 2. **Install dependencies:**
+#### 2. **Install dependencies:**
 
 ```npm
 npm install
 ```
 
-### 3. **Set up environment variables:**
+#### 3. **Set up environment variables:**
 
 - Create a `.env` file in the root directory.
 - Define the port and database url
   - `PORT`: Port number for the server.
-  - `DATABASE_URL`: MongoDB connection URI.
+  - `DATABASE_URL`: MongoDB connection url.
 
 #### Run the server:
 
