@@ -1,6 +1,7 @@
-import { ProductModel } from "../product/product.model";
-import { Order } from "./order.interface";
-import { OrderModel } from "./order.model";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ProductModel } from '../product/product.model';
+import { Order } from './order.interface';
+import { OrderModel } from './order.model';
 
 const createOrder = async (order: Order) => {
   const { productId: _id, quantity } = order;
@@ -8,30 +9,30 @@ const createOrder = async (order: Order) => {
   // checking product existence
   const product = await ProductModel.findOne({ _id });
   if (!product) {
-    throw new Error("Product not found");
+    throw new Error('Product not found');
   }
 
   // checking the quantity
   if (product?.inventory?.quantity < quantity) {
-    throw new Error("Insufficient quantity available in inventory");
+    throw new Error('Insufficient quantity available in inventory');
   }
 
   const updatedQuantity = product?.inventory?.quantity - quantity;
   const inStock = updatedQuantity > 0;
   const updateProductData = {
     $set: {
-      "inventory.quantity": updatedQuantity,
-      "inventory.inStock": inStock,
+      'inventory.quantity': updatedQuantity,
+      'inventory.inStock': inStock,
     },
   };
 
   const updatedProduct = await ProductModel.findByIdAndUpdate(
     { _id },
-    updateProductData
+    updateProductData,
   );
 
   if (!updatedProduct) {
-    throw new Error("Something went wrong while updating");
+    throw new Error('Something went wrong while updating');
   }
 
   // Create order

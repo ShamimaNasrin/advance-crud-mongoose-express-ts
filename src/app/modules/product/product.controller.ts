@@ -18,11 +18,11 @@ const createProduct = async (req: Request, res: Response) => {
       message: "Product created successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "something went wrong",
+      message: "something went wrong",
       error: err,
     });
   }
@@ -55,11 +55,11 @@ const getAllProducts = async (req: Request, res: Response) => {
         }`,
       });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "something went wrong fetching products!",
+      message: "something went wrong fetching products!",
       error: err,
     });
   }
@@ -84,11 +84,11 @@ const getSingleProduct = async (req: Request, res: Response) => {
         data: result,
       });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "something went wrong",
+      message: "something went wrong",
       error: err,
     });
   }
@@ -113,11 +113,11 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
         data: result,
       });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "something went wrong",
+      message: "something went wrong",
       error: err,
     });
   }
@@ -155,14 +155,14 @@ const updateSingleProduct = async (req: Request, res: Response) => {
       res.status(400).json({
         success: false,
         message: "No such product",
-        data: "",
+        // data: "",
       });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "Failed to update product!",
+      message: "Failed to update product!",
       error: err,
     });
   }

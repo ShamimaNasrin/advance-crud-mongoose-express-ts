@@ -1,5 +1,6 @@
-import { Product } from "./product.interface";
-import { ProductModel } from "./product.model";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Product } from './product.interface';
+import { ProductModel } from './product.model';
 
 // create product function
 const createProduct = async (product: Product) => {
@@ -15,7 +16,7 @@ const getAllProduct = async (queryParams: any) => {
 
   // search query
   if (queryParams?.searchTerm) {
-    const search = new RegExp(queryParams.searchTerm, "i");
+    const search = new RegExp(queryParams.searchTerm, 'i');
     query = {
       $or: [
         { name: { $regex: search } },

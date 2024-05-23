@@ -14,11 +14,11 @@ const createOrder = async (req: Request, res: Response) => {
       message: "Order created successfully!",
       data: result,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "Failed to create a order!",
+      message: "Failed to create a order!",
       error: err,
     });
   }
@@ -35,7 +35,7 @@ type QueryParams = {
 
 // Get all orders
 const getAllOrders = async (
-  req: Request<{}, {}, {}, QueryParams>,
+  req: Request<unknown, unknown, unknown, QueryParams>,
   res: Response
 ) => {
   try {
@@ -56,8 +56,8 @@ const getAllOrders = async (
         ? "Orders fetched successfully for user email!"
         : "No orders found for user email!"
       : result.length > 0
-      ? "Orders fetched successfully!"
-      : "Orders not found!";
+        ? "Orders fetched successfully!"
+        : "Orders not found!";
 
     const status = result?.length > 0 ? 200 : 404;
 
@@ -88,11 +88,11 @@ const getAllOrders = async (
         message,
       });
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     // console.log(err);
     res.status(500).json({
       success: false,
-      message: err.message || "something went wrong fetching orders!",
+      message: "something went wrong fetching orders!",
       error: err,
     });
   }
