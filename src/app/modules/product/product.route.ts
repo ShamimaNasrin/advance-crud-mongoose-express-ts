@@ -1,21 +1,21 @@
 import express from "express";
-import { ProductController } from "./product.controller";
+import { ProductControllers } from "./product.controller";
 
 const router = express.Router();
 
 // for creating product
-router.post("/", ProductController.createProduct);
+router.post("/", ProductControllers.createProduct);
 
 //get all product
-router.get("/", ProductController.getAllProducts);
+router.get("/", ProductControllers.getAllProducts);
 
 // get a single product
-router.get("/:productId", ProductController.getSingleProduct);
+router.get("/:productId", ProductControllers.getSingleProduct);
 
 //delete a single product
-router.delete("/:productId", ProductController.deleteSingleProduct);
+router.delete("/:productId", ProductControllers.deleteSingleProduct);
 
-// update a single product
-router.put("/:productId", ProductController.updateSingleProduct);
+// // update a single product
+// router.put("/:productId", ProductControllers.updateSingleProduct);
 
 export const ProductRoutes = router;

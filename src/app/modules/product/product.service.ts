@@ -31,7 +31,7 @@ const updateSingleProduct = async (_id: string, updatedProductD: Product) => {
   return updatedData;
 };
 
-export const StudentServices = {
+export const ProductServices = {
   createProduct,
   getAllProduct,
   getSingleProduct,
