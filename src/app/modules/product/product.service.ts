@@ -8,8 +8,24 @@ const createProduct = async (product: Product) => {
 };
 
 // get all products
-const getAllProduct = async () => {
-  const result = await ProductModel.find();
+const getAllProduct = async (queryParams: any) => {
+  // const result = await ProductModel.find();
+
+  let query: object = {};
+
+  // search query
+  if (queryParams?.searchTerm) {
+    const search = new RegExp(queryParams.searchTerm, "i");
+    query = {
+      $or: [
+        { name: { $regex: search } },
+        { category: { $regex: search } },
+        { tags: { $in: [search] } },
+      ],
+    };
+  }
+
+  const result = await ProductModel.find(query);
   return result;
 };
 
@@ -26,9 +42,9 @@ const deleteSingleProduct = async (_id: string) => {
 };
 
 // update a single product
-const updateSingleProduct = async (_id: string, updatedProductD: Product) => {
-  const updatedData = await ProductModel.updateOne({ _id }, updatedProductD);
-  return updatedData;
+const updateSingleProduct = async (_id: string, updatedProduct: Product) => {
+  const result = await ProductModel.updateOne({ _id }, updatedProduct);
+  return result;
 };
 
 export const ProductServices = {
