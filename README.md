@@ -1,9 +1,5 @@
 # Advance CRUD with Express, Mongoose and TypeScript
 
-### Live server link:
-
--
-
 ### Techonologies Used
 
 - Express.js

@@ -35,15 +35,26 @@ const getAllProducts = async (req: Request, res: Response) => {
     const queryParams = req.query;
     const result = await ProductServices.getAllProduct(queryParams);
 
-    res.status(200).json({
-      success: true,
-      message: `${
-        queryParams.searchTerm
-          ? `Products matching search term '${queryParams.searchTerm}' fetched successfully!`
-          : "Products fetched successfully!"
-      }`,
-      data: result,
-    });
+    if (result?.length) {
+      res.status(200).json({
+        success: true,
+        message: `${
+          queryParams.searchTerm
+            ? `Products matching search term '${queryParams.searchTerm}' fetched successfully!`
+            : "Products fetched successfully!"
+        }`,
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: `${
+          queryParams.searchTerm
+            ? `No Products matching search term '${queryParams.searchTerm}`
+            : "Products not found!"
+        }`,
+      });
+    }
   } catch (err: any) {
     // console.log(err);
     res.status(500).json({
